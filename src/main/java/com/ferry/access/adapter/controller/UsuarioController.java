@@ -18,6 +18,7 @@ public class UsuarioController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioDto create(@RequestBody UsuarioDto usuario) {
+        usuario.setId(null);
         return usuarioConverter.toDto(usuarioService.create(usuarioConverter.toEntity(usuario)));
     }
 }

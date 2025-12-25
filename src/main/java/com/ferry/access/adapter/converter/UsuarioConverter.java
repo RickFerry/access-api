@@ -1,6 +1,7 @@
 package com.ferry.access.adapter.converter;
 
 import com.ferry.access.adapter.dto.UsuarioDto;
+import com.ferry.access.core.domain.Pessoa;
 import com.ferry.access.core.domain.Usuario;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,7 @@ public class UsuarioConverter {
         usuario.setEmail(usuarioDto.getEmail());
         usuario.setSenha(usuarioDto.getSenha());
         usuario.setAdministrador(usuarioDto.getAdministrador());
+        usuario.setPessoa(new Pessoa(null, usuarioDto.getNome()));
         return usuario;
     }
 
@@ -28,6 +30,7 @@ public class UsuarioConverter {
         usuarioDto.setEmail(usuario.getEmail());
         usuarioDto.setSenha(usuario.getSenha());
         usuarioDto.setAdministrador(usuario.getAdministrador());
+        usuarioDto.setNome(usuario.getPessoa().getNome());
         return usuarioDto;
     }
 }

@@ -9,17 +9,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "usuario")
-@AllArgsConstructor
+@Table(name = "pessoa")
 @NoArgsConstructor
-public class UsuarioEntity {
+@AllArgsConstructor
+public class PessoaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String email;
-    private String senha;
-    private Boolean administrador;
-    @OneToOne
-    @JoinColumn(name = "pessoa_id")
-    private PessoaEntity pessoa;
+    private String nome;
 }
