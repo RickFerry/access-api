@@ -18,7 +18,6 @@ public class UsuarioController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioDto create(@RequestBody UsuarioDto usuario) {
-        return usuarioConverter.toDto(usuarioService.create(usuarioConverter.toEntity(usuario))
-                .orElseThrow(() -> new RuntimeException("Erro ao criar usuário")));
+        return usuarioConverter.toDto(usuarioService.create(usuarioConverter.toEntity(usuario)));
     }
 }

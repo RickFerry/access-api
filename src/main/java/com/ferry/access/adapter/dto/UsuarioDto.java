@@ -10,9 +10,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDto implements Serializable {
-    Long id;
-    String nome;
-    String email;
-    String senha;
-    Boolean administrador;
+    private Long id;
+    private String nome;
+    private String email;
+    private String senha;
+    private Boolean administrador;
 }
