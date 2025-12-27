@@ -4,10 +4,10 @@ import com.ferry.access.core.domain.Usuario;
 import com.ferry.access.core.port.UsuarioEntityRepositoryPort;
 import com.ferry.access.core.port.UsuarioServicePort;
 
-public class UsuarioServiceImpl implements UsuarioServicePort {
+public class UsuarioServicePortImpl implements UsuarioServicePort {
     private final UsuarioEntityRepositoryPort usuarioEntityRepositoryPort;
 
-    public UsuarioServiceImpl(UsuarioEntityRepositoryPort usuarioEntityRepositoryPort) {
+    public UsuarioServicePortImpl(UsuarioEntityRepositoryPort usuarioEntityRepositoryPort) {
         this.usuarioEntityRepositoryPort = usuarioEntityRepositoryPort;
     }
 

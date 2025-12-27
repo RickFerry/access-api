@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("api/usuarios")
 public class UsuarioController {
-
     private final UsuarioServicePort usuarioService;
     private final UsuarioConverter usuarioConverter;
 

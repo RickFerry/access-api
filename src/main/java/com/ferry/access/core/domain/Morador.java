@@ -5,17 +5,17 @@ public class Morador {
     private String cpf;
     private String endereco;
     private String celular;
-    private Long idPessoa;
+    private Pessoa pessoa;
 
     public Morador() {
     }
 
-    public Morador(Long id, String cpf, String endereco, String celular, Long idPessoa) {
+    public Morador(Long id, String cpf, String endereco, String celular, Pessoa pessoa) {
         this.id = id;
         this.cpf = cpf;
         this.endereco = endereco;
         this.celular = celular;
-        this.idPessoa = idPessoa;
+        this.pessoa = pessoa;
     }
 
     public Long getId() {
@@ -50,11 +50,11 @@ public class Morador {
         this.celular = celular;
     }
 
-    public Long getIdPessoa() {
-        return idPessoa;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setIdPessoa(Long idPessoa) {
-        this.idPessoa = idPessoa;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

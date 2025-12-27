@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
-public class UsuarioEntityRespositoryImpl implements UsuarioEntityRepositoryPort {
+public class UsuarioEntityRespositoryAdapter implements UsuarioEntityRepositoryPort {
     private final UsuarioEntityRepository usuarioEntityRepository;
     private final PessoaEntityRepository pessoaEntityRepository;
     private final ModelMapper modelMapper;
