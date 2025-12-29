@@ -1,9 +1,12 @@
 package com.ferry.access.adapter.controller;
 
 import com.ferry.access.adapter.converter.VisitanteConverter;
+import com.ferry.access.adapter.dto.PageResponse;
 import com.ferry.access.adapter.dto.VisitanteDto;
 import com.ferry.access.core.port.VisitanteServicePort;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +24,24 @@ public class VisitanteController {
         return visitanteConverter.toDto(port.create(visitanteConverter.toEntity(dto)));
     }
 
-    @GetMapping
+    @GetMapping(params = "rg")
     public ResponseEntity<VisitanteDto> findByRg(@RequestParam String rg) {
         return ResponseEntity.ok(visitanteConverter.toDto(port.findByRg(rg)));
+    }
+
+    @GetMapping
+    public ResponseEntity<PageResponse<VisitanteDto>> findAll(Pageable pageable) {
+        Page<VisitanteDto> visitantes = port.findAll(pageable)
+                .map(visitanteConverter::toDto);
+
+        PageResponse<VisitanteDto> resp = new PageResponse<>(
+                visitantes.getContent(),
+                visitantes.getNumber(),
+                visitantes.getSize(),
+                visitantes.getTotalElements(),
+                visitantes.getTotalPages()
+        );
+
+        return ResponseEntity.ok(resp);
     }
 }

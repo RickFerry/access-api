@@ -7,6 +7,8 @@ import com.ferry.access.core.port.VisitanteEntityRepositoryPort;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,5 +37,12 @@ public class VisitanteEntityRepositoryAdapter implements VisitanteEntityReposito
         VisitanteEntity visitanteEntity = visitanteEntityRepository.findByRg(rg)
                 .orElseThrow(() -> new EntityNotFoundException("Visitante com rg " + rg + " não encontrado"));
         return modelMapper.map(visitanteEntity, Visitante.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Visitante> findAll(Pageable pageable) {
+        Page<VisitanteEntity> visitantesPage = visitanteEntityRepository.findAll(pageable);
+        return visitantesPage.map(visitanteEntity -> modelMapper.map(visitanteEntity, Visitante.class));
     }
 }
