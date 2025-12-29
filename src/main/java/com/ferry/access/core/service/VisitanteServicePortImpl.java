@@ -15,4 +15,9 @@ public class VisitanteServicePortImpl implements VisitanteServicePort {
     public Visitante create(Visitante entity) {
         return port.create(entity);
     }
+
+    @Override
+    public Visitante findByRg(String rg) {
+        return port.findByRg(rg);
+    }
 }

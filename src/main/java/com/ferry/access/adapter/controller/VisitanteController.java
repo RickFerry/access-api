@@ -5,6 +5,7 @@ import com.ferry.access.adapter.dto.VisitanteDto;
 import com.ferry.access.core.port.VisitanteServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,5 +19,10 @@ public class VisitanteController {
     @ResponseStatus(HttpStatus.CREATED)
     public VisitanteDto create(@RequestBody VisitanteDto dto) {
         return visitanteConverter.toDto(port.create(visitanteConverter.toEntity(dto)));
+    }
+
+    @GetMapping
+    public ResponseEntity<VisitanteDto> findByRg(@RequestParam String rg) {
+        return ResponseEntity.ok(visitanteConverter.toDto(port.findByRg(rg)));
     }
 }
