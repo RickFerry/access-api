@@ -2,6 +2,7 @@ package com.ferry.access.infra;
 
 import com.ferry.access.core.port.*;
 import com.ferry.access.core.service.MoradorServicePortImpl;
+import com.ferry.access.core.service.PessoaServicePortImpl;
 import com.ferry.access.core.service.UsuarioServicePortImpl;
 import com.ferry.access.core.service.VisitanteServicePortImpl;
 import org.modelmapper.ModelMapper;
@@ -24,6 +25,11 @@ public class BeansConfig {
     @Bean
     VisitanteServicePort visitanteServicePort(VisitanteEntityRepositoryPort visitanteEntityRepositoryPort) {
         return new VisitanteServicePortImpl(visitanteEntityRepositoryPort);
+    }
+
+    @Bean
+    PessoaServicePort pessoaServicePort(PessoaEntityRepositoryPort pessoaEntityRepositoryPort) {
+        return new PessoaServicePortImpl(pessoaEntityRepositoryPort);
     }
 
     @Bean

@@ -2,34 +2,22 @@ package com.ferry.access.adapter.converter;
 
 import com.ferry.access.adapter.dto.MoradorDto;
 import com.ferry.access.core.domain.Morador;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class MoradorConverter {
+    private final ModelMapper modelMapper;
 
     public Morador toEntity(MoradorDto dto) {
-        if (dto == null) {
-            return null;
-        }
-        Morador morador = new Morador();
-        morador.setId(dto.getId());
-        morador.setCpf(dto.getCpf());
-        morador.setEndereco(dto.getEndereco());
-        morador.setCelular(dto.getCelular());
-        morador.setPessoa(dto.getPessoa());
-        return morador;
+        modelMapper.typeMap(MoradorDto.class, Morador.class);
+        return modelMapper.map(dto, Morador.class);
     }
 
     public MoradorDto toDto(Morador morador) {
-        if (morador == null) {
-            return null;
-        }
-        MoradorDto dto = new MoradorDto();
-        dto.setId(morador.getId());
-        dto.setCpf(morador.getCpf());
-        dto.setEndereco(morador.getEndereco());
-        dto.setCelular(morador.getCelular());
-        dto.setPessoa(morador.getPessoa());
-        return dto;
+        modelMapper.typeMap(Morador.class, MoradorDto.class);
+        return modelMapper.map(morador, MoradorDto.class);
     }
 }

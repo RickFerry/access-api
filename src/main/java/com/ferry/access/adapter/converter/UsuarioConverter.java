@@ -1,36 +1,23 @@
 package com.ferry.access.adapter.converter;
 
 import com.ferry.access.adapter.dto.UsuarioDto;
-import com.ferry.access.core.domain.Pessoa;
 import com.ferry.access.core.domain.Usuario;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UsuarioConverter {
+    private final ModelMapper modelMapper;
 
     public Usuario toEntity(UsuarioDto usuarioDto) {
-        if (usuarioDto == null) {
-            return null;
-        }
-        Usuario usuario = new Usuario();
-        usuario.setId(usuarioDto.getId());
-        usuario.setEmail(usuarioDto.getEmail());
-        usuario.setSenha(usuarioDto.getSenha());
-        usuario.setAdministrador(usuarioDto.getAdministrador());
-        usuario.setPessoa(new Pessoa(null, usuarioDto.getNome()));
-        return usuario;
+        modelMapper.typeMap(Usuario.class, Usuario.class);
+        return modelMapper.map(usuarioDto, Usuario.class);
     }
 
     public UsuarioDto toDto(Usuario usuario) {
-        if (usuario == null) {
-            return null;
-        }
-        UsuarioDto usuarioDto = new UsuarioDto();
-        usuarioDto.setId(usuario.getId());
-        usuarioDto.setEmail(usuario.getEmail());
-        usuarioDto.setSenha(usuario.getSenha());
-        usuarioDto.setAdministrador(usuario.getAdministrador());
-        usuarioDto.setNome(usuario.getPessoa().getNome());
-        return usuarioDto;
+        modelMapper.typeMap(Usuario.class, UsuarioDto.class);
+        return modelMapper.map(usuario, UsuarioDto.class);
     }
 }

@@ -19,10 +19,10 @@ public class UsuarioEntityRespositoryAdapter implements UsuarioEntityRepositoryP
     @Override
     @Transactional
     public Usuario create(Usuario usuario) {
-        PessoaEntity pessoaMap = modelMapper.map(usuario.getPessoa(), PessoaEntity.class);
-        PessoaEntity pessoaSave = pessoaEntityRepository.save(pessoaMap);
+        PessoaEntity pessoaSaved = pessoaEntityRepository.findById(
+                usuario.getPessoa().getId()).orElseThrow(() -> new RuntimeException("Pessoa not found"));
         UsuarioEntity usuarioMap = modelMapper.map(usuario, UsuarioEntity.class);
-        usuarioMap.setPessoa(pessoaSave);
+        usuarioMap.setPessoa(pessoaSaved);
 
         return modelMapper.map(usuarioEntityRepository.save(usuarioMap), Usuario.class);
     }
